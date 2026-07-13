@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="VuTJys935QyGLmQ8rehaKfBQe3BNnzaNRWG6qm9Rl3s" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quantifly</title>
+<meta name="description" content="You scanned a Quantifly QR code." />
+<style>
+  :root {
+    --brand: #ff6b00;
+    --text: #1a1a1a;
+    --muted: #5f5f5f;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--brand);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  h1 { margin: 0 0 0.5rem; color: var(--brand); font-size: 1.5rem; }
+  .box-id {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: #faf9f7;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    margin: 0.75rem 0 1.25rem;
+    color: var(--text);
+    word-break: break-all;
+  }
+  p { color: var(--muted); max-width: 320px; }
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.875rem;
+  }
+  footer a { color: var(--brand); text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <main>
+    <div class="logo">Q</div>
+    <h1 id="heading">You scanned a Quantifly box</h1>
+    <div class="box-id" id="boxIdDisplay" hidden></div>
+    <p id="message">
+      Open the Quantifly app on your phone and use the QR scanner there to
+      jump straight to this box's contents.
+    </p>
+  </main>
+  <footer>
+    <a href="/home">Quantifly</a>
+    <a href="/policy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </footer>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var boxId = params.get("boxId");
+    if (boxId) {
+      var el = document.getElementById("boxIdDisplay");
+      el.textContent = "Box ID: " + boxId;
+      el.hidden = false;
+    } else {
+      document.getElementById("heading").textContent = "Quantifly QR code";
+      document.getElementById("message").textContent =
+        "This link is meant to be opened by the Quantifly app's QR scanner.";
+    }
+  </script>
+</body>
+</html>
